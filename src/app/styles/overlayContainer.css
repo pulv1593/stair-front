@@ -1,0 +1,31 @@
+.overlay-container {
+  top: 56px; /* '메인품목리스트' 헤더의 실제 위치에 따라 조정하세요 */
+  right: 0;
+  width: fit-content;
+  min-width: 25%;
+  z-index: 1; /* 다른 요소 위에 나타나도록 높은 z-index */
+  overflow-y: auto; /* 내용이 높이를 초과할 경우 스크롤 추가 */
+  padding: 10px; /* 오버레이 내부의 패딩 */
+}
+
+.toggle-icon {
+  top: 56px;
+  width: fit-content;
+  z-index: 1;
+}
+.list-container {
+  display: flex;
+  background: transparent;
+}
+
+.overlay-container.Close {
+  display: none;
+}
+.toggle-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
