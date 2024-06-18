@@ -106,6 +106,7 @@ const CartList: React.FC = () => {
     }
   }
 
+  let friend_data;
   const getfrienddata = async () => {
     if (friend_onoff === false) {
       let datas = await fetch("http://localhost:3000/returnfriendlist", {
@@ -213,7 +214,8 @@ const CartList: React.FC = () => {
         >
           {location !== null ? "지도 보기" : "hello?"}
         </button>
-        {location !== null && <Map location={location} />}
+        {/* {location !== null && <Map location={location} />} */}
+        <Map center/>
       </div>
     </div>
   );
