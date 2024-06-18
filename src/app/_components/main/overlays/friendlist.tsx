@@ -23,7 +23,7 @@ interface item{
     quantity:number
 }
 
-const FriendList: React.FC<Friendlist> = ({frienddata,item_list}) => {
+const FriendList: React.FC<Friendlist> = ({frienddata, item_list}) => {
     console.log("item_list:",item_list);
     const send_cartlist_to_friend=async ()=>{
        let x=document.querySelectorAll(".friend_list");
