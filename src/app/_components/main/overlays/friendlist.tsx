@@ -23,7 +23,8 @@ const FriendList: React.FC<FriendListProps> = ({frienddata,item_list}) => {
     const send_cartlist_to_friend=async ()=>{
        let x=document.querySelectorAll(".friend_list");
        let sendlist=Array.from(x).filter((item)=>{
-        if(item.children[0].checked){
+        const checkbox = item.children[0] as HTMLInputElement;
+        if(checkbox.checked){
             console.log(item.id);
             return true;
         }
@@ -49,7 +50,7 @@ const FriendList: React.FC<FriendListProps> = ({frienddata,item_list}) => {
 
     const find_memeber=()=>{
 
-        let doc=document.getElementById("member_find");
+        let doc=document.getElementById("member_find") as HTMLInputElement;
         
         const find_list=frienddata.filter((mem)=>{
             if(mem.name===doc.value){
@@ -72,9 +73,9 @@ const FriendList: React.FC<FriendListProps> = ({frienddata,item_list}) => {
                 doc3.textContent=x.name;
                 doc2.appendChild(doc3);
                 doc3.addEventListener("click",()=>{
-                    let y=document.getElementById(`${x.uuid}`)
+                    let y=document.getElementById(`${x.uuid}`) as HTMLInputElement;
                     console.log(y.children[0]); 
-                    y.children[0].checked=true;
+                    (y.children[0] as HTMLInputElement).checked=true;
                 })
                 
             }
