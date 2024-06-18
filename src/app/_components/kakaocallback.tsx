@@ -1,6 +1,6 @@
 'use client';
 import React ,{ useEffect } from 'react';
-;import { useSearchParams,useRouter } from 'next/navigation'
+;import { useSearchParams, useRouter } from 'next/navigation'
 
 const KakaoCallback: React.FC = () => {
   const code = useSearchParams();
