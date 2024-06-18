@@ -5,25 +5,20 @@ interface friend_data{
     uuid:string,
     name:string
   }
-  interface friend_data_list{
-    friend_datas:friend_data[]
-  }
 
-interface Friendlist{
-    frienddata:friend_data_list
-    item_list:items
-}
-interface items{
-    items:item[]
-}
-interface item{
+interface CartItem{
     productId:number,
     productImgUrl:string,
     productName:string,
     quantity:number
 }
 
-const FriendList: React.FC<Friendlist> = ({frienddata, item_list}) => {
+interface FriendListProps {
+    frienddata: friend_data[];
+    item_list: CartItem[];
+}
+
+const FriendList: React.FC<FriendListProps> = ({frienddata,item_list}) => {
     console.log("item_list:",item_list);
     const send_cartlist_to_friend=async ()=>{
        let x=document.querySelectorAll(".friend_list");
@@ -51,14 +46,12 @@ const FriendList: React.FC<Friendlist> = ({frienddata, item_list}) => {
 
       console.log("s:",s)      
     }
-   let x=frienddata.friend_datas;
-    console.log(x);
 
     const find_memeber=()=>{
 
         let doc=document.getElementById("member_find");
         
-        const find_list=x.filter((mem)=>{
+        const find_list=frienddata.filter((mem)=>{
             if(mem.name===doc.value){
                 return true;
             }
@@ -93,7 +86,7 @@ const FriendList: React.FC<Friendlist> = ({frienddata, item_list}) => {
     }
 
 
- return  (
+    return  (
     <div className="absolute w-[200px] h-[200px]   bg-slate-500 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-100 overflow-scroll overflow-x-hidden "> 
         
         
@@ -102,7 +95,7 @@ const FriendList: React.FC<Friendlist> = ({frienddata, item_list}) => {
         {
             <ul className="">
                 {
-                    x.map(x=>(
+                    frienddata.map(x=>(
 
 
                         <li id={x.uuid} key={x.uuid} className="friend_list bg-white rounded-lg w-full h-[20px]">
