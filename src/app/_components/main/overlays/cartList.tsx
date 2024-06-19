@@ -248,7 +248,9 @@ const CartList: React.FC = () => {
   const [friendlist, setfriendlist] = useState<friend_data[]>();
   const cart_list = JSON.parse(localStorage.getItem("Item_Chosen")) || [];
   const hasItems = cart_list.length > 0;
-  const [location, setLocation] = useState<{ datas: string[] }>(null);
+  const [items, setItem] = useState<CartItem[]>([]);
+
+  const [location, setLocation] = useState<{ datas: string[] | null }>(null);
   const [friend_onoff, setfriend] = useState(false);
 
   const handleQuantityChange2 = async (id: number, delta: number) => {
@@ -364,8 +366,6 @@ const CartList: React.FC = () => {
     setfriend(false)
     console.log("setfriend");
   }
-
-  const [items, setItem] = useState()
 
 
   useEffect(() => {
