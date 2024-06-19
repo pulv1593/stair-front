@@ -59,8 +59,6 @@ const MainList: React.FC = () => {
       }    
   }*/
 
-
-  
   //fetch문으로 가져와서 백엔드에다가 데이터를 넣는과정.
   const add_to_cartlist=async(itemid:number,itemimgurl:string,itemname:string)=>{
 
@@ -80,32 +78,29 @@ const MainList: React.FC = () => {
         console.log("error:",data.message);
       }
       console.log("success add cartlist:",data);
-      //fetch문으로 나의 카트리스트에다가 데이터를 채우는 과정.
   }
-  
-
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/products?page=${currentPage-1}&size=11`,{
+        const response = await fetch(`http://localhost:3000/products?page=${currentPage-1}&size=12`,{
           headers: {
             'Content-Type': 'application/json'
           }
-        });  // 백엔드 URL
+        });
         const data = await response.json();
-        console.log(data);
+        console.log("cartitem:",data);
         setAllItems(data.data);  
       } catch (error) {
         console.error('Fetching data failed', error);
       }
     };
 
-    fetchData();  // fetchData 함수 실행
+    fetchData();
   }, [currentPage]);
 
-    const handlePageChange = (page: number) => {
-    setCurrentPage(page); // 페이지 변경 처리
+  const handlePageChange = (page: number) => {
+      setCurrentPage(page);
   };
 return (
   <div className="list-container">
@@ -114,7 +109,7 @@ return (
       <svg className="h-8 w-8 text-slate-500 toggle-icon"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <polyline points="7 7 12 12 7 17" />  <polyline points="13 7 18 12 13 17" /></svg>
     </button>
     </div>
-    <div className={`overlay-container ${isListOpen ? 'overlay-container' : 'Close'}`}>
+    <div className={`${isListOpen ? 'overlay-container' : 'Close'}`}>
       {/* <form className="mx-auto mb-5">
         <div className="relative rounded-lg shadow-sm">
           <div className="absolute inset-y-0 start-0 flex items-center pl-3 pointer-events-none">
@@ -131,8 +126,8 @@ return (
           <li key={item.productId} className="w-full flex items-center p-2 ">
             <div className="flex flex-row items-center justify-between w-full">
               <img src={item.productImgUrl} alt={item.productName} className="h-10 w-10 object-cover mb-2" />
-              <div className="text-center text-white mb-2 mx-4">{item.productName}</div>
-              <button onClick={()=>{add_to_cartlist(item.productId,item.productImgUrl,item.productName)}}type="button" className="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">
+              <div className="truncate text-center text-black mx-4">{item.productName}</div>
+              <button onClick={()=>{add_to_cartlist(item.productId,item.productImgUrl,item.productName)}} type="button" className="text-sky-700 hover:text-white border border-sky-300 hover:bg-sky-400 focus:ring-4 focus:outline-none focus:ring-sky-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-sky-500 dark:text-sky-500 dark:hover:text-white dark:hover:bg-sky-500 dark:focus:ring-sky-800">
                 추가
               </button>
             </div>

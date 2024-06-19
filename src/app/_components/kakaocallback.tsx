@@ -1,6 +1,6 @@
 'use client';
 import React ,{ useEffect } from 'react';
-;import { useSearchParams, useRouter } from 'next/navigation'
+;import { useSearchParams,useRouter } from 'next/navigation'
 
 const KakaoCallback: React.FC = () => {
   const code = useSearchParams();
@@ -22,6 +22,8 @@ const KakaoCallback: React.FC = () => {
       console.log("code 객체가 정의되지 않았습니다.");
     }
     window.onload = changeUrlToDummy;
+
+
     const kakaoLogin = async () => {
 
         const response = await fetch(`http://localhost:3000/reqlogin`, {
