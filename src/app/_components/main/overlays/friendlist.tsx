@@ -4,17 +4,12 @@ import "../../../styles/scroll.css";
 interface friend_data{
     uuid:string,
     name:string
-
-  }
-  interface friend_data_list{
-    friend_datas:friend_data[]
-  }
+}
 
 interface Friendlist{
-    frienddata:friend_data_list
-    item_list:items
+    frienddata:friend_data[],
+    item_list: CartItem[],
     handle_friend_set:()=>void
-
 }
 
 interface CartItem{
@@ -25,7 +20,7 @@ interface CartItem{
 }
 
 
-const FriendList: React.FC<Friendlist> = ({frienddata,item_list,handle_friend_set}) => {
+const FriendList: React.FC<Friendlist> = ({frienddata, item_list, handle_friend_set}) => {
     console.log("frienddata:",frienddata);
     console.log("item_list:",item_list);
     const send_cartlist_to_friend=async ()=>{
@@ -43,13 +38,12 @@ const FriendList: React.FC<Friendlist> = ({frienddata,item_list,handle_friend_se
         let mart_id;
         let martname;
         for(const x of martlist){
-           
-            if(x.children[0].checked){
-                mart_Address=x.children[0].value;
-                mart_id=x.children[0].id
+            const radio = x.children[0] as HTMLInputElement;
+            if(radio.checked){
+                mart_Address=radio.value;
+                mart_id=radio.id
                 martname=x.textContent;
                 console.log("mart_id:",mart_id);
-              
             }
         }
 
@@ -81,7 +75,7 @@ const FriendList: React.FC<Friendlist> = ({frienddata,item_list,handle_friend_se
     const find_memeber=()=>{
 
 
-        let doc=document.getElementById("member_find");
+        let doc=document.getElementById("member_find") as HTMLInputElement;
 
 
         let doc2=document.getElementById("show_box");
