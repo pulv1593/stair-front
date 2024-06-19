@@ -23,6 +23,9 @@ interface CartItem{
 const FriendList: React.FC<Friendlist> = ({frienddata, item_list, handle_friend_set}) => {
     console.log("frienddata:",frienddata);
     console.log("item_list:",item_list);
+
+    const BACKEND_URI = process.env.NEXT_PUBLIC_BACKEND_URI
+
     const send_cartlist_to_friend=async ()=>{
         let x=document.querySelectorAll(".friend_list");
         let sendlist=Array.from(x).filter((item)=>{
@@ -54,7 +57,7 @@ const FriendList: React.FC<Friendlist> = ({frienddata, item_list, handle_friend_
 
         let uuid_list=sendlist.map((x)=>{return x.id});
         console.log("uud_list:",uuid_list);
-        let s=await fetch("http://localhost:3000/sendmsgtofriend",
+        let s=await fetch(`${BACKEND_URI}/sendmsgtofriend`,
             {method:'POST',
                 headers:{
                     'Content-Type':"application/json",

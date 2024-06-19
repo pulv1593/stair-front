@@ -11,13 +11,16 @@ interface MapProps{
 
 const SendMap:React.FC<MapProps> = ({address,martid,martname}) => {
     const kakaoMap = useMap();
+    const BACKEND_URI = process.env.NEXT_PUBLIC_BACKEND_URI;
     let adds=decodeURI(address);
     let mart_name=decodeURI(martname);
     
     let cart_data;
     let cart_data2;
+
+
     async function getcartlist(){
-    const cart_data=await fetch(`http://localhost:3000/marts/selling/${martid}`, {
+    const cart_data=await fetch(`${BACKEND_URI}/marts/selling/${martid}`, {
         method:'GET',
         headers:{
             Authorization:"Bearer "+localStorage.getItem("access_token")
@@ -30,7 +33,7 @@ const SendMap:React.FC<MapProps> = ({address,martid,martname}) => {
       return cart_data;
     }
     async function getcartlist2(){
-        const cart_data=await fetch(`http://localhost:3000/cart`, {
+        const cart_data=await fetch(`${BACKEND_URI}/cart`, {
             method:'GET',
             headers:{
                 Authorization:"Bearer "+localStorage.getItem("access_token")
