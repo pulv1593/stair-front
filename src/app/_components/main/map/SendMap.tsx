@@ -3,16 +3,11 @@
 import React, { useEffect, useState } from 'react'
 import { useMap } from './MapProvider'
 
-
-
-
 interface MapProps{
     address:string
     martid:number
     martname:string
-
 }
-
 
 const SendMap:React.FC<MapProps> = ({address,martid,martname}) => {
     const kakaoMap = useMap();
@@ -73,14 +68,14 @@ const SendMap:React.FC<MapProps> = ({address,martid,martname}) => {
         console.log(origin_cord);
         let container=document.getElementById("map");
         let mapOption = { 
-                center: new kakao.maps.LatLng(Number(origin_cord[0]),Number(origin_cord[1])), // 지도의 중심좌표
+                center: new window.kakao.maps.LatLng(Number(origin_cord[0]),Number(origin_cord[1])), // 지도의 중심좌표
                 level: 3 // 지도의 확대 레벨
             };
 
-        var map = new kakao.maps.Map(container, mapOption); 
-        let marker = new kakao.maps.Marker({
+        var map = new window.kakao.maps.Map(container, mapOption); 
+        let marker = new window.kakao.maps.Marker({
             map: map,
-            position: new kakao.maps.LatLng(Number(origin_cord[0]),Number(origin_cord[1])),
+            position: new window.kakao.maps.LatLng(Number(origin_cord[0]),Number(origin_cord[1])),
           })
         
         cart_data=await getcartlist();
@@ -88,7 +83,7 @@ const SendMap:React.FC<MapProps> = ({address,martid,martname}) => {
         //getcartlist();
 
         const over_lay_main=document.createElement("div");
-       
+      
         const over_lay_star=document.createElement("div");
         const over_lay_cart_list=document.createElement("div")
         const over_lay_cart_list_btn=document.createElement("button");
@@ -107,7 +102,7 @@ const SendMap:React.FC<MapProps> = ({address,martid,martname}) => {
               console.log("line=0");
     
               const data=cart_data
-             
+            
               if(data.success){
 
                 for(let i=0;i<data.data.length;i++){
@@ -119,7 +114,7 @@ const SendMap:React.FC<MapProps> = ({address,martid,martname}) => {
 
                 }
 
-   
+  
                //over_lay_serve.textContent+=(mart_price_all_data[martid]+"원");
               }
               else{
